@@ -40,10 +40,14 @@ namespace WebClient
                 AnsiConsole.WriteLine("Добавляем... результат:");
                 SendCustomer();
               }  break;
-            case 3: return Task.CompletedTask;
+            case 3:
+              {
+                httpClient.Dispose(); 
+                return Task.CompletedTask;
+              }
           }
           AnsiConsole.WriteLine();
-        }
+        }        
       }
       catch(Exception ex) 
       {
