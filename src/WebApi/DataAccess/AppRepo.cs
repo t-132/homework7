@@ -8,32 +8,32 @@ namespace WebApi.DataAccess
 {
     public class AppRepo : IAppRepo
     {
-        private readonly Dictionary<long, Customer> _data;
-        private int _nextId;
+        private readonly Dictionary<Guid, Customer> _data;
+        //private int _nextId;
         public AppRepo()
         { 
-            _data = new Dictionary<long, Customer>(1000);
-            _nextId = 0;
+            _data = new Dictionary<Guid, Customer>(1000);            
         }
 
-        public Task<Customer> GetCustomer(long id)
+        public Task<Customer> GetCustomer(Guid id)
         {
           //  Console.WriteLine(id);
             Customer cp;
-            if (id >= 0 && id <= _nextId && _data.TryGetValue(id,out cp))                
+            if (_data.TryGetValue(id,out cp))                
                 return Task.FromResult(cp);
             return Task.FromResult(default(Customer));
             //return Task.FromResult((Customer)null);
     }
 
-        public Task<long> NewCustomer(Customer customer)
+        public Task<Guid> NewCustomer(Customer customer)
         {
-            long id = ++_nextId;
-          //  Console.WriteLine(id);          
+           Guid id = Guid.NewGuid();
+          //  Console.WriteLine(id);
+          
             if (_data.TryAdd(id, new Customer { Id = id, Firstname = customer.Firstname, Lastname = customer.Lastname}))
                 return Task.FromResult(id);
 
-            return Task.FromResult((long)0);
+            return Task.FromResult(default(Guid));
         }
 
         

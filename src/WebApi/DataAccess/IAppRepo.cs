@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using WebApi.Models;
 
 namespace WebApi.DataAccess
 {
     public interface IAppRepo
     {
-        Task<Customer> GetCustomer(long id);
-        Task<long> NewCustomer(Customer customer);        
+        Task<Customer> GetCustomer(Guid id);
+        Task<Guid> NewCustomer(Customer customer);        
     }
 }

@@ -1,4 +1,4 @@
-
+using System;
 using System.Data.Common;
 
 namespace WebClient
@@ -21,6 +21,6 @@ namespace WebClient
 
         public string Lastname { get; init; }
 
-        public string GetJson() => $@"{{""Id"":0, ""Firstname"":""{Firstname}"",""Lastname"":""{Lastname}""}}";
+        public string GetJson() => $@"{{""Id"":""{default(Guid).ToString()}"", ""Firstname"":""{Firstname}"",""Lastname"":""{Lastname}""}}";
     }
 }

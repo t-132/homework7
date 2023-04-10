@@ -17,14 +17,14 @@ namespace WebApi.Controllers
             _repo = repo; 
         }
 
-        [HttpGet("{id:long}")]   
-        public async Task<Customer> GetCustomerAsync([FromRoute] long id)
-        {
+        [HttpGet("{id:Guid}")]   
+        public async Task<Customer> GetCustomerAsync([FromRoute] Guid id)
+        {            
             return await _repo.GetCustomer(id);
         }
 
         [HttpPost("")]   
-        public async Task<long> CreateCustomerAsync([FromBody] Customer customer)
+        public async Task<Guid> CreateCustomerAsync([FromBody] Customer customer)
         {
             return await _repo.NewCustomer(customer);
         }

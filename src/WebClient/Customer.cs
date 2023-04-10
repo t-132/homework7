@@ -1,8 +1,9 @@
+using System;
 namespace WebClient
 {
     public class Customer
     {
-        public long Id { get; init; }
+        public Guid Id { get; init; }
 
         public string Firstname { get; init; }
 

@@ -59,7 +59,7 @@ namespace WebClient
     private static void GetCustomerById(string id) 
     {
       
-      var httpResponse = httpClient.GetAsync($"http://localhost:5000/customers/{id}");
+      var httpResponse = httpClient.GetAsync($"http://localhost:5000/customers/{id.Replace("\"","")}");
       if (httpResponse.Result.StatusCode == HttpStatusCode.OK)
       {
         var content = httpResponse.Result.Content.ReadAsStringAsync();
